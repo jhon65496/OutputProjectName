@@ -19,7 +19,7 @@ namespace SerilogTestWinForm01.Service
 
         public void CreateLoggerMessage()
         {
-            _log.Information("ProductService | CreateLoggerMessage");
+            _log.Information("MyName--SerilogTestWinForm01.Service | CreateLoggerMessage");
         }
 
     }

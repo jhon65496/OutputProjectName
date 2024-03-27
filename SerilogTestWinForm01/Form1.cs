@@ -37,7 +37,7 @@ namespace SerilogTestWinForm01
 
         public void CreateLoggerMessage()
         {
-             _lg.Information($"SerilogTestWinForm01 | Message");
+             _lg.Information($"MyName--SerilogTestWinForm01 | Message");
 
             productService.CreateLoggerMessage();
         }
