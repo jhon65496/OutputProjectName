@@ -17,10 +17,11 @@ namespace SerilogTestWinForm01.Service
     public class ProductService
     {
         private readonly ILogger<ProductService> _logger;
+        
 
         public ProductService()
         {
-            _logger = _logger = LogExtensions.LoggingInstance<ProductService>();
+            _logger = LogExtensions.LoggingInstance<ProductService>();
         }
 
 

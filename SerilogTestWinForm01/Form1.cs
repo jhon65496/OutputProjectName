@@ -29,13 +29,11 @@ namespace SerilogTestWinForm01
         {
             InitializeComponent();
 
-            _logger = LogExtensions.LoggingInstance<Form1>();
-            // Logger1 lg = new Logger1();
-            // _lg = lg.CreateLogger2();
-
-            productService = new ProductService();
+            _logger = LogExtensions.LoggingInstance<Form1>();            
 
             CreateLoggerMessageForm1();
+
+            productService = new ProductService();
             CreateLoggerMessageProductService();
         }
 
