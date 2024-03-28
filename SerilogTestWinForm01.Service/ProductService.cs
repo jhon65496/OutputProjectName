@@ -1,25 +1,34 @@
-﻿using Serilog;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
+// 
+using Serilog;
+using Microsoft.Extensions.Logging;
+using LoggingSerilog;
+
 
 namespace SerilogTestWinForm01.Service
 {
     public class ProductService
     {
-        private readonly ILogger _log;
+        private readonly ILogger<ProductService> _logger;
 
-        public ProductService(ILogger log)
+        public ProductService()
         {
-            _log = log;       
+            _logger = _logger = LogExtensions.LoggingInstance<ProductService>();
         }
 
 
-        public void CreateLoggerMessage()
+        public void CreateLoggerMessageProductService()
         {
-            _log.Information("ProductService | CreateLoggerMessage");
+            Thread.Sleep(1000);
+
+            _logger.LogInformation($"MyNameSerilogTestWinForm01.Service | CreateLoggerMessageProductService()");
         }
 
     }

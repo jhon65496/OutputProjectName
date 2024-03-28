@@ -14,32 +14,39 @@ using Serilog.Formatting.Json;
 // using LoggingSerilog3;
 using LoggingSerilog;
 using SerilogTestWinForm01.Service;
-
+using Microsoft.Extensions.Logging;
+using Serilog.Core;
 
 namespace SerilogTestWinForm01
 {
     public partial class Form1 : Form
     {
-        ILogger _lg;
+        // ILogger _lg;
+        private readonly ILogger<Form1> _logger;
         ProductService productService;
 
         public Form1()
         {
             InitializeComponent();
 
-            Logger1 lg = new Logger1();
-            _lg = lg.CreateLogger2();
+            _logger = LogExtensions.LoggingInstance<Form1>();
+            // Logger1 lg = new Logger1();
+            // _lg = lg.CreateLogger2();
 
-            productService = new ProductService(_lg);
+            productService = new ProductService();
 
-            CreateLoggerMessage();
+            CreateLoggerMessageForm1();
+            CreateLoggerMessageProductService();
         }
 
-        public void CreateLoggerMessage()
+        public void CreateLoggerMessageForm1()
         {
-             _lg.Information($"SerilogTestWinForm01 | Message");
-
-            productService.CreateLoggerMessage();
+            _logger.LogInformation($"MyNameForm1 | `CreateLoggerMessageForm1()`");
+        }
+     
+        public void CreateLoggerMessageProductService()
+        {
+            productService.CreateLoggerMessageProductService();
         }
     }
 }
