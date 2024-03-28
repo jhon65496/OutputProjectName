@@ -25,7 +25,8 @@ namespace LoggingSerilog
                 .MinimumLevel.Debug()
                 // --- --- --- --- --- --- ---
                 // .Enrich.With<UtcTimestampEnricher>()
-                   .Enrich.With<ProjectNameEnricher>()
+                // .Enrich.With<ProjectNameEnricher>()
+                   .Enrich.With<ProjectNameEnricher<T>>()
                 // --- --- --- --- --- --- ---
                 .CreateLogger();
 
@@ -35,13 +36,13 @@ namespace LoggingSerilog
 
     }
 
-    class ProjectNameEnricher : ILogEventEnricher
+    class ProjectNameEnricher<T> : ILogEventEnricher
     {
         public void Enrich(LogEvent logEvent, ILogEventPropertyFactory pf)
         {
             // logEvent.AddPropertyIfAbsent(pf.CreateProperty("ProjectName", typeof(Program).Assembly.GetName().Name));            
             // logEvent.AddPropertyIfAbsent(pf.CreateProperty("ProjectName", Assembly.GetCallingAssembly().GetName().Name));
-            logEvent.AddPropertyIfAbsent(pf.CreateProperty("ProjectName", Assembly.GetEntryAssembly().GetName().Name));
+            logEvent.AddPropertyIfAbsent(pf.CreateProperty("ProjectName", typeof(T).Name));
         }
     }
 }
