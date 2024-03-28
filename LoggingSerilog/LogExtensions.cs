@@ -19,13 +19,13 @@ namespace LoggingSerilog
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File("all-28-08ImRn-Test.logs",
-                                outputTemplate: "{Timestamp:u} | {ProjectName} " +
+                                outputTemplate: "{Timestamp:u} | {typeof(T).Name} " +
                                                 "| {SourceContext} | [{Level:u3}] " +
                                                 "{Message:lj} {NewLine}")
                 .MinimumLevel.Debug()
                 // --- --- --- --- --- --- ---
                 // .Enrich.With<UtcTimestampEnricher>()
-                .Enrich.With<ProjectNameEnricher>()
+                // .Enrich.With<ProjectNameEnricher>()
                 // --- --- --- --- --- --- ---
                 .CreateLogger();
 
